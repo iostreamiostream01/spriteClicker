@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+	body
+    {
+    	background-color: rgb(25,25,25);
+    }
+    h1{
+    	color: rgb(25,140,255);
+        font-family: helvetica;
+        font-size: 45px;
+        text-align: center;
+    }
+    button
+    {
+    margin-bottom: 25px;
+    text-align:center;
+    background-color: rgb(25,155,255); /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+    }
+    hr
+    {
+    	height: 2px;
+    	background-color: rgb(25,155,255);
+        color: black;
+        border: none;
+    }
+    #footer
+    {
+    	color: rgb(25,155,255);
+        font-family: helvetica;
+        text-align: center;
+    }
+    #upgrade4
+    {
+    	align: center;
+    }
+    autoWrapper
+    {
+    	text-align:center;
+    }
+    .auto
+    {
+    	margin: auto;
+    	display: table;
+    }
+    button
+    {
+    	margin: auto;
+        display: table;
+    }
+    #clicker
+    {
+    	background-color: white;
+        color: rgb(25,155,255);
+        font-size 25px;
+    }
+</style>
+
+</head>
+<body>
+
+<h1 id="demo">sprite cans: </h1>
+
+<button onclick="sprite()" id="clicker"><h3 id="footer">Insert cranberry sprite here</h3><br><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVDDD1axMRAohdb51AsoGI47BhCubq7wptls7Io2gafN5_GpRs" id="clickImg"></button>
+<br>
+<h3 id="footer">Clicker Upgrades</h3>
+<hr>
+<button onclick="buyPC()" id="upgrade1">Buy more mouths to drink cranberry sprite! price: 25</button>
+<br>
+<button onclick="buyUpgrade2()" id="upgrade2">Grow bigger mouths to drink multiple cans at once! price: 50</button>
+<br>
+<h3 id="footer">Auto Clickers</h3>
+<hr>
+<div id="autoWrapper">
+<button onclick="buyUpgrade3()" id="upgrade3" class="auto">Pay someone to drink sprite for you! price: 10</button>
+<br>
+<button onclick="buyUpgrade4()" id="upgrade4" class="auto">Pay a company to drink soda for you! price: 100</button>
+
+</div>
+<br>
+<hr>
+<h3 id="footer">Created by Hunter Levinger as a part of my Game Design final project</h3>
+
+<script>
+//global variables
+var cans = 10000000000000000000000000000; 
+var cansPC = 1;
+var cansPerClick = 1;
+
+//upgrade 3 variables
+var upgrade3Price = 10;
+var upgrade3Amount = 0;
+
+//upgrade 4 variables
+var upgrade4Price = 100;
+var upgrade4Amount = 0;
+
+var PCCost = 25;
+
+var upgrade2Cost = 50;
+document.getElementById("demo").innerHTML = "sprite cans:" + cans;
+function sprite() {
+	cans += cansPC*cansPerClick;
+    reload();
+}
+setInterval(function()
+{
+	cans += upgrade3Amount * 2;
+    cans += upgrade4Amount * 25
+    reload();
+},1000)
+
+setInterval(function()
+{
+	reload();
+},15)
+
+function buyPC() {
+	if(cans >= PCCost)
+    {
+    	cansPC += 1;
+        cans -= PCCost;
+        PCCost = PCCost * 2;
+    }
+    reload();
+}
+function buyUpgrade2()
+{
+	if(cans >= upgrade2Cost)
+    {
+    	cans -= upgrade2Cost;
+        cansPerClick += 1;
+        upgrade2Cost = upgrade2Cost * 2;
+        if(cansPerClick >= 12 && cansPerClick <= 25)
+        {
+        	document.getElementById("clickImg").src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-90hyoM4suzgWHS7_ZTuCXLpT3agTYBqMa0JnizWtQIT4U3NieQ";
+        }
+        if(cansPerClick >= 25 && cansPerClick <= 40)
+        {
+        	document.getElementById("clickImg").src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaOP4vbXjS0spuIVeF4d_krDGtIua_g3M4njDduK43ProG5WpOgQ";
+        }
+        if(cansPerClick >= 40)
+        {
+        	document.getElementById("clickImg").src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbYMLiXaRuLRVrHGM7WF3_NHuc_bJC68LMZWI8N3tOWNmCnDmO";
+        }
+    }
+    reload();
+}
+function buyUpgrade3()
+{
+	if(cans >= upgrade3Price)
+     {
+     	cans -= upgrade3Price;
+        upgrade3Amount += 1;
+        upgrade3Price = Math.round(upgrade3Price * 1.5 + 2);
+     }
+     reload();
+}
+
+function buyUpgrade4()
+{
+	if(cans >= upgrade4Price)
+    {
+    	cans -= upgrade4Price;
+        upgrade4Amount += 1;
+        upgrade4Price = Math.round(upgrade4Price * 1.5);
+    }
+}
+
+function reload() {
+	document.getElementById("demo").innerHTML = "sprite cans:" + cans;
+    document.getElementById("upgrade1").innerHTML = "Buy more mouths to drink cranberry sprite! price: " + PCCost;
+    document.getElementById("upgrade2").innerHTML = "Grow bigger mouths to drink multiple cans at once! price: " + upgrade2Cost;
+    document.getElementById("upgrade3").innerHTML = "Pay someone to drink sprite for you! price: " + upgrade3Price;
+    document.getElementById("upgrade4").innerHTML = "Pay a company to drink soda for you! price: " + upgrade4Price;
+}
+</script>
+
+</body>
+</html>
