@@ -86,6 +86,8 @@
 <button onclick="buyUpgrade4()" id="upgrade4" class="auto">Pay a company to drink soda for you! price: 100</button>
 <br>
 <button onclick="buyUpgrade5()" id="upgrade5" class="auto">Pay the entire world to drink sprite cranberry for you</button>
+<br>
+<button onclick="buyUpgrade6()" id="upgrade6" class="auto"></button>
 	
 	
 </div>
@@ -110,6 +112,10 @@ var upgrade4Amount = 0;
 //upgrade 5 variables
 var upgrade5Price = 1000;
 var upgrade5Amount = 0;
+	
+//upgrade 6 variables
+var upgrade6Price = 10000;
+var upgrade6Amount = 0;
 
 var PCCost = 25;
 
@@ -124,6 +130,7 @@ setInterval(function()
 	cans += upgrade3Amount * 2;
 	cans += upgrade4Amount * 25
 	cans += upgrade5Amount * 300;
+	cans += upgrade6Amount * 700;
     reload();
 },1000)
 
@@ -192,6 +199,15 @@ function buyUpgrade5()
 		upgraade5Price = Math.round(upgrade5Price * 1.5);
 	}
 }
+function buyUpgrade6()
+{
+	if(cans >= upgrade6Price)
+	{
+		cans -= upgrade6Price;
+		upgrade6Amount += 1;
+		upgraade6Price = Math.round(upgrade6Price * 1.5);
+	}
+}
 
 function reload() {
 	document.getElementById("demo").innerHTML = "sprite cans:" + cans;
@@ -199,7 +215,8 @@ function reload() {
     document.getElementById("upgrade2").innerHTML = "Grow bigger mouths to drink multiple cans at once! price: " + upgrade2Cost;
     document.getElementById("upgrade3").innerHTML = "Pay someone to drink sprite for you! price: " + upgrade3Price;
     document.getElementById("upgrade4").innerHTML = "Pay a company to drink soda for you! price: " + upgrade4Price;
-	document.getElementById("upgrade5").innerHTML = "Pay the entire world to drink sprite cranberry for you: " + upgrade5Price;
+	document.getElementById("upgrade5").innerHTML = "Pay the entire world to drink sprite cranberry for you! price: " + upgrade5Price;
+	document.getElementById("upgrade6").innerHTML = "Pay an alien race to drink sprite cranberry for you! price: " + upgrade5Price;
 }
 </script>
 
