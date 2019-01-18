@@ -84,11 +84,14 @@
 <button onclick="buyUpgrade3()" id="upgrade3" class="auto">Pay someone to drink sprite for you! price: 10</button>
 <br>
 <button onclick="buyUpgrade4()" id="upgrade4" class="auto">Pay a company to drink soda for you! price: 100</button>
-
+<br>
+<button onclick="buyUpgrade5()" id="upgrade5" class="auto">Pay the entire world to drink sprite cranberry for you</button>
+	
+	
 </div>
 <br>
 <hr>
-<h3 id="footer">Created by Hunter Levinger and Brendan Kreuger as a part of my Game Design final project</h3>
+<h3 id="footer">Created by Hunter Levinger as a part of my Game Design final project</h3>
 
 <script>
 //global variables
@@ -103,6 +106,10 @@ var upgrade3Amount = 0;
 //upgrade 4 variables
 var upgrade4Price = 100;
 var upgrade4Amount = 0;
+	
+//upgrade 5 variables
+var upgrade5Price = 1000;
+var upgrade5Amount = 0;
 
 var PCCost = 25;
 
@@ -115,7 +122,8 @@ function sprite() {
 setInterval(function()
 {
 	cans += upgrade3Amount * 2;
-    cans += upgrade4Amount * 25
+	cans += upgrade4Amount * 25
+	cans += upgrade5Amount * 300;
     reload();
 },1000)
 
@@ -174,6 +182,15 @@ function buyUpgrade4()
         upgrade4Amount += 1;
         upgrade4Price = Math.round(upgrade4Price * 1.5);
     }
+}
+function buyUpgrade5()
+{
+	if(cans >= upgrade5Price)
+	{
+		cans -= upgrade5Price;
+		upgrade5Amount += 1;
+		upgraade5Price = Math.round(upgrade5Price * 1.5);
+	}
 }
 
 function reload() {
